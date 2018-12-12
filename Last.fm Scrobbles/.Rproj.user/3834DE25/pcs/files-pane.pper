@@ -1,0 +1,9 @@
+{
+    "path" : "~/Work/Last.fm/Last.fm Scrobbles",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(readr)\nlibrary(tidyverse)\nlibrary(ggplot2)\nlibrary(lubridate)\nlibrary(readxl)\nlibrary(urltools)\nlibrary(jsonlite)\nlibrary(memoise)\n\n# Load df\nlast_fm_plays <- read_csv(\"~/Work/Last.fm Scrobbles/last.fm plays.csv\", \n                          col_names = c(\"Artist\", \"Album\", \"Song\", \"Date\"), skip = 1)\n\nlast_fm_plays$Date <- dmy_hm(last_fm_plays$Date, tz=\"Australia/Melbourne\",\n                             locale=Sys.getlocale(\"LC_TIME\"))\n\nlast_fm_plays <- select(last_fm_plays, Date, Song, Artist, Album)\n\napi <- \"19fcc9dfc1aaeba4688dbce850ab5113\"\n\nbuild_artist_toptags_query <- function(artist, api_key, base = \"http://ws.audioscrobbler.com/2.0/\") {\n  base <- param_set(base, \"method\", \"artist.gettoptags\")\n  base <- param_set(base, \"artist\", URLencode(artist))\n  base <- param_set(base, \"api_key\", api)\n  base <- param_set(base, \"format\", \"json\")\n  \n  return(base)\n}\n\nfetch_artist_toptags <- function(artist) {\n\n  json <- fromJSON(build_artist_toptags_query(artist))\n  \n  if (length(json$toptags$tag) == 0) return(NA)\n  \n  return(c(as.vector(json$toptags$tag[,\"name\"])))\n}\n\nTags1 <- function(data, artist){\n                          for (i in 1:length(data$Artist))\n                            fetch_artist_toptags(data$Artist)[1]\n    }\n\nlast_fm_plays$Tag1 <- Tags1(last_fm_plays, Artist)\n\nTags2 <- function(data, artist){\n  for (i in 1:length(data$Artist))\n    fetch_artist_toptags(data$Artist)[2]\n}\n\nlast_fm_plays$Tag2 <- Tags2(last_fm_plays, Artist)\n\nTags3 <- function(data, artist){\n  for (i in 1:length(data$Artist))\n    fetch_artist_toptags(data$Artist)[3]\n}\n\nlast_fm_plays$Tag3 <- Tags3(last_fm_plays, Artist)\n\nTags4 <- function(data, artist){\n  for (i in 1:length(data$Artist))\n    fetch_artist_toptags(data$Artist)[4]\n}\n\nlast_fm_plays$Tag4 <- Tags4(last_fm_plays, Artist)\n\nTags5 <- function(data, artist){\n  for (i in 1:length(data$Artist))\n    fetch_artist_toptags(data$Artist)[5]\n}\n\nlast_fm_plays$Tag5 <- Tags5(last_fm_plays, Artist)\n\nlibrary(beepr)\nbeep(2)",
+    "created" : 1536015875752.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2114512662",
+    "id" : "B3A122F0",
+    "lastKnownWriteTime" : 1544573214,
+    "last_content_update" : 1544573214842,
+    "path" : "~/Work/Last.fm/Last.fm Scrobbles/last.fm_script.R",
+    "project_path" : "last.fm_script.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1536015963077.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9998C207",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1536015963077,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "492E415C",
+        "caption" : "last_fm_plays",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=last_fm_plays&cache_key=492E415C",
+        "displayedObservations" : "54164",
+        "environment" : "",
+        "object" : "last_fm_plays",
+        "preview" : "0",
+        "totalObservations" : "54164",
+        "variables" : "4"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
